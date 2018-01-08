@@ -1,0 +1,7 @@
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\bin\Debug\Binary Search Tree.exe.config
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\bin\Debug\Binary Search Tree.exe
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\bin\Debug\Binary Search Tree.pdb
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\obj\Debug\BinarySearchTree.csprojResolveAssemblyReference.cache
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\obj\Debug\BinarySearchTree.csproj.CoreCompileInputs.cache
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\obj\Debug\Binary Search Tree.exe
+C:\Users\Peter Husman\Documents\GitHub\BST\Binary Search Tree\obj\Debug\Binary Search Tree.pdb
