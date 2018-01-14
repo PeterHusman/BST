@@ -15,7 +15,7 @@ namespace BinarySearchTree
 
         public Node Search(int key)
         {
-            if(IsEmpty())
+            if (IsEmpty())
             {
                 return null;
             }
@@ -30,7 +30,7 @@ namespace BinarySearchTree
                     }
                     current = current.LChild;
                 }
-                else if(key > current.Key)
+                else if (key > current.Key)
                 {
                     if (current.RChild == null)
                     {
@@ -38,7 +38,7 @@ namespace BinarySearchTree
                     }
                     current = current.RChild;
                 }
-                else if(key == current.Key)
+                else if (key == current.Key)
                 {
                     return current;
                 }
@@ -48,20 +48,21 @@ namespace BinarySearchTree
 
         public void Insert(Node n)
         {
-            if(IsEmpty())
+            if (IsEmpty())
             {
                 Root = n;
                 Root.Parent = null;
                 return;
             }
             Node current = Root;
-            while(true)
+            while (true)
             {
-                if(n.Key < current.Key)
+                if (n.Key < current.Key)
                 {
-                    if(current.LChild == null)
+                    if (current.LChild == null)
                     {
                         current.LChild = n;
+                        n.Parent = current;
                         return;
                     }
                     current = current.LChild;
@@ -71,21 +72,136 @@ namespace BinarySearchTree
                     if (current.RChild == null)
                     {
                         current.RChild = n;
+                        n.Parent = current;
                         return;
                     }
                     current = current.RChild;
                 }
             }
-            
+
+        }
+
+        public void Insert(int key)
+        {
+            Insert(new Node(key));
         }
 
         public void Delete(Node n)
         {
-            if(IsEmpty())
+            if (IsEmpty())
             {
                 return;
             }
+            bool isRoot = n == Root;
             
+            bool isLeft = false;
+            if (!isRoot && n.Parent.LChild == n)
+            {
+                isLeft = true;
+            }
+            if (n.ChildrenCount == 0)
+            {
+                if(isRoot)
+                {
+                    Root = null;
+                    return;
+                }
+                if (isLeft)
+                {
+                    n.Parent.LChild = null;
+                }
+                else
+                {
+                    n.Parent.RChild = null;
+                }
+                return;
+            }
+            if (n.ChildrenCount == 1)
+            {
+                Node child = n.LChild == null ? n.RChild : n.LChild;
+                if(isRoot)
+                {
+                    Root = child;
+                    Root.Parent = null;
+                    return;
+                }
+                child.Parent = n.Parent;
+                if (isLeft)
+                {
+                    n.Parent.LChild = child;
+                }
+                else
+                {
+                    n.Parent.RChild = child;
+                }
+                return;
+            }
+            if(n.ChildrenCount > 1)
+            {
+                Node current = n.LChild;
+                while(current.RChild != null)
+                {
+                    current = current.RChild;
+                }
+                if(isRoot)
+                {
+                    Root.Key = current.Key;
+                    
+                }
+                else if (isLeft)
+                {
+                    n.Parent.LChild.Key = current.Key;
+                }
+                else
+                {
+                    n.Parent.RChild.Key = current.Key;
+                }
+                bool isRight = current.Parent.RChild == current;
+                if (current.LChild != null)
+                {
+                    current.LChild.Parent = current.Parent;
+                    if (isRight)
+                    {
+                        current.Parent.RChild = current.LChild;
+                    }
+                    else
+                    {
+                        current.Parent.LChild = current.LChild;
+                    }
+
+
+                }
+                else
+                {
+                    if (isRight)
+                    {
+                        current.Parent.RChild = null;
+                    }
+                    else
+                    {
+                        current.Parent.LChild = null;
+                    }
+                }
+                return;
+            }
+
+        }
+
+
+
+        public void Delete(int key)
+        {
+            if (IsEmpty())
+            {
+                return;
+            }
+            Delete(Search(key));
+
+        }
+
+
+        public void Rebalance()
+        {
 
         }
 

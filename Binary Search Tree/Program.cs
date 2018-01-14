@@ -10,7 +10,54 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
-            Console.ReadKey();
+            BinaryTree tree = new BinaryTree();
+
+            while(true)
+            {
+                string s = Console.ReadLine();
+                if(s[0] == 'i')
+                {
+                    s = s.Remove(0, 1);
+                    tree.Insert(int.Parse(s));
+                }
+                else if (s[0] == 'd')
+                {
+                    s = s.Remove(0, 1);
+                    tree.Delete(int.Parse(s));
+                }
+                else if (s[0] == 's')
+                {
+                    s = s.Remove(0, 1);
+                    tree.Search(int.Parse(s));
+                }
+                Render(tree);
+
+            }
+        }
+
+        public static void Render(BinaryTree tree)
+        {
+            Console.Clear();
+            RenderNode(tree.Root);
+        }
+
+        public static void RenderNode(Node n, int x = 20, int y = 0, int xDiff = 10)
+        {
+            if (n == null)
+            {
+                return;
+            }
+            Console.SetCursorPosition(x, y);
+            Console.Write(n.Key);
+            if (n.LChild != null)
+            {
+                RenderNode(n.LChild, x - xDiff, y + 1, (int)Math.Ceiling(xDiff/2f));
+            }
+            if (n.RChild != null)
+            {
+                RenderNode(n.RChild, x + xDiff, y + 1, (int)Math.Ceiling(xDiff / 2f));
+            }
+            return;
         }
     }
 }
