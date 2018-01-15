@@ -10,12 +10,12 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
-            BinaryTree tree = new BinaryTree();
+            AVLTree tree = new AVLTree();
 
-            while(true)
+            while (true)
             {
                 string s = Console.ReadLine();
-                if(s[0] == 'i')
+                if (s[0] == 'i')
                 {
                     s = s.Remove(0, 1);
                     tree.Insert(int.Parse(s));

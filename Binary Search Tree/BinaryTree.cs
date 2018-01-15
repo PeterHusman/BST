@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinarySearchTree
 {
-    class BinaryTree
+    public class BinaryTree
     {
         public BinaryTree()
         {
@@ -199,11 +199,7 @@ namespace BinarySearchTree
 
         }
 
-
-        public void Rebalance()
-        {
-
-        }
+        
 
         public bool IsEmpty()
         {
