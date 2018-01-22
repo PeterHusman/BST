@@ -49,6 +49,11 @@ namespace BinarySearchTree
                 return;
             }
             Console.SetCursorPosition(x, y);
+            Console.ForegroundColor = ConsoleColor.White;
+            if (n.Red)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
             Console.Write(n.Key);
             if (n.LChild != null)
             {

@@ -12,8 +12,13 @@ namespace BinarySearchTree
         {
             Key = key;
             height = 1;
+            Red = true;
         }
+
+
         public Node Parent;
+
+        public bool Red;
 
         public Node LChild;
         public Node RChild;

@@ -206,7 +206,19 @@ namespace BinarySearchTree
             return Root == null;
         }
 
-        public Node Root;
+
+        private Node root;
+        public Node Root
+        {
+            get
+            {
+                return root;
+            }
+            protected set
+            {
+                root = value;
+            }
+        }
 
     }
 }
