@@ -58,9 +58,17 @@ namespace BinarySearchTree
             //as we move back up the tree
 
             //if right is red, rotate left
+            if(current.RChild.Red)
+            {
+                LeftRotate(current);
+            }
 
 
             //if there is a red chain on the left (node.Left.IsRed && node.Left.Left.IsRed), rotate right
+            if(current.LChild.Red&&current.LChild.LChild.Red)
+            {
+                RightRotate(current);
+            }
 
 
             //rotates: new parent.Color = oldParent.Color
@@ -120,6 +128,7 @@ namespace BinarySearchTree
 
         public void RightRotate(Node n)
         {
+
             if (n.Parent == null)
             {
                 Root = n.LChild;
@@ -142,6 +151,7 @@ namespace BinarySearchTree
             Node toBeLChild = n.Parent.RChild;
             n.Parent.RChild = n;
             n.LChild = toBeLChild;
+            
         }
 
         public void LeftRotate(Node n)

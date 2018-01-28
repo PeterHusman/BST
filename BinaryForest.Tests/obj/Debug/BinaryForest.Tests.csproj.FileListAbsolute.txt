@@ -1,0 +1,16 @@
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\BinaryForest.Tests.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\BinaryForest.Tests.pdb
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Binary Search Tree.exe
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Binary Search Tree.pdb
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Binary Search Tree.exe.config
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\obj\Debug\BinaryForest.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\obj\Debug\BinaryForest.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\obj\Debug\BinaryForest.Tests.dll
+C:\Users\Peter Husman\Documents\GitHub\BST\BinaryForest.Tests\obj\Debug\BinaryForest.Tests.pdb
