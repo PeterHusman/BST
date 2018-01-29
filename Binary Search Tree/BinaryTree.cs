@@ -13,6 +13,63 @@ namespace BinarySearchTree
             Root = null;
         }
 
+        public bool IsValid()
+        {
+            return isValid(root);
+        }
+
+        public Node InvalidNode()
+        {
+            return invalidNode(Root);
+        }
+
+        private Node invalidNode(Node start)
+        {
+            if (start.RChild != null)
+            {
+                if (start.RChild.Key < start.Key)
+                {
+                    return start.RChild;
+                }
+                return invalidNode(start.RChild);
+            }
+            if (start.LChild != null)
+            {
+                if (start.LChild.Key >= start.Key)
+                {
+                    return start.LChild;
+                }
+                return invalidNode(start.LChild);
+
+            }
+
+            return null;
+
+        }
+
+        private bool isValid(Node start)
+        {
+
+            if (start.RChild != null)
+            {
+                if (start.RChild.Key < start.Key || !isValid(start.RChild))
+                {
+                    return false;
+                }
+            }
+            if(start.LChild != null)
+            {
+                if(start.LChild.Key >= start.Key || !isValid(start.LChild))
+                {
+                    return false;
+                }
+                
+            }
+
+            return true;
+        }
+
+
         public Node Search(int key)
         {
             if (IsEmpty())
