@@ -46,6 +46,8 @@ namespace BinaryForest.Tests
         }
 
         
+
+
     }
     [TestClass]
     public class AVLTreeTests
@@ -103,46 +105,12 @@ namespace BinaryForest.Tests
         }
 
         [TestMethod]
-        public void RebalanceIssueTest()
+        public void DuplicateValueTest()
         {
             var tree = new AVLTree();
-            tree.Insert(10);
-            tree.Insert(15);
-            tree.Insert(5);
-            for (int i = 0; i < 3; i++)
-            {
-                tree.Insert(1);
-            }
-            Assert.IsNotNull(tree.Search(10), "Rebalance had issue: Node 10 was erased");
-            int nodeNumber = tree.IsValid() ? -1 : tree.InvalidNode().Key;
-            Assert.IsTrue(tree.IsValid(), $"Tree was invalid: Node {nodeNumber} failed");
+            tree.Insert(1);
+            Assert.ThrowsException<Exception>(() => tree.Insert(1), "Binary Search Tree did not throw exception when duplicate value (1) was added.");
         }
-
-
-
-        //[TestMethod]
-        //public void InsertGenSkipTest()
-        //{
-        //    var tree = new AVLTree();
-        //    tree.Insert(20);
-        //    tree.Insert(25);
-        //    tree.Insert(15);
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        tree.Insert(i);
-        //        if (i == 0)
-        //        {
-        //            Assert.AreEqual(tree.Search(15), tree.Search(i).Parent);
-        //        }
-        //        else
-        //        {
-        //            Assert.AreEqual(tree.Search(i - 1), tree.Search(i).Parent);
-        //        }
-        //    }
-           
-
-        //}
-
     }
 
     [TestClass]

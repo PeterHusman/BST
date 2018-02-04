@@ -35,7 +35,7 @@ namespace BinarySearchTree
             }
             if (start.LChild != null)
             {
-                if (start.LChild.Key >= start.Key)
+                if (start.LChild.Key > start.Key)
                 {
                     return start.LChild;
                 }
@@ -59,7 +59,7 @@ namespace BinarySearchTree
             }
             if(start.LChild != null)
             {
-                if(start.LChild.Key >= start.Key || !isValid(start.LChild))
+                if(start.LChild.Key > start.Key || !isValid(start.LChild))
                 {
                     return false;
                 }
@@ -124,7 +124,7 @@ namespace BinarySearchTree
                     }
                     current = current.LChild;
                 }
-                else
+                else if (n.Key > current.Key)
                 {
                     if (current.RChild == null)
                     {
@@ -133,6 +133,10 @@ namespace BinarySearchTree
                         return;
                     }
                     current = current.RChild;
+                }
+                else
+                {
+                    throw new Exception("Cannot insert duplicate values into a tree.");
                 }
             }
 

@@ -35,7 +35,7 @@ namespace BinarySearchTree
             }
 
             Node nextCurrent;
-            if (key >= current.Key)
+            if (key > current.Key)
             {
                 nextCurrent = current.RChild;
                 if (nextCurrent == null)
@@ -44,7 +44,7 @@ namespace BinarySearchTree
                     return;
                 }
             }
-            else
+            else if (key < current.Key)
             {
                 nextCurrent = current.LChild;
                 if (nextCurrent == null)
@@ -52,6 +52,10 @@ namespace BinarySearchTree
                     current.LChild = new Node(key);
                     return;
                 }
+            }
+            else
+            {
+                throw new Exception("Cannot insert duplicate values into a tree.");
             }
             insert(nextCurrent, key);
 
