@@ -10,7 +10,7 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
-            AVLTree tree = new AVLTree();
+            RBTree tree = new RBTree();
             
 
             while (true)

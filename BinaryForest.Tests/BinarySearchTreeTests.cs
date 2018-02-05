@@ -109,12 +109,20 @@ namespace BinaryForest.Tests
         {
             var tree = new AVLTree();
             tree.Insert(1);
-            Assert.ThrowsException<Exception>(() => tree.Insert(1), "Binary Search Tree did not throw exception when duplicate value (1) was added.");
+            Assert.ThrowsException<Exception>(() => tree.Insert(1), "AVL tree did not throw exception when duplicate value (1) was added.");
         }
     }
 
     [TestClass]
     public class RBTreeTests
     {
+        [TestMethod]
+        public void RootIsBlackTest()
+        {
+            var tree = new RBTree();
+
+            tree.Insert(1);
+            Assert.IsFalse(tree.Root.Red, "Root was not black");
+        }
     }
 }

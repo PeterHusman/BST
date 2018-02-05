@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//https://www.cs.princeton.edu/~rs/talks/LLRB/LLRB.pdf
+//https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf
+
 namespace BinarySearchTree
 {
     public class RBTree : BinaryTree
@@ -29,19 +32,21 @@ namespace BinarySearchTree
         {
             //as we move down the tree
 
-            if(current.RChild.Red && current.LChild.Red)
+            if (IsRed(current.RChild) && IsRed(current.LChild))
             {
                 FlipColor(current);
             }
 
             Node nextCurrent;
+            bool added = false;
             if (key > current.Key)
             {
                 nextCurrent = current.RChild;
                 if (nextCurrent == null)
                 {
                     current.RChild = new Node(key);
-                    return;
+                    current.RChild.Parent = current;
+                    added = true;
                 }
             }
             else if (key < current.Key)
@@ -50,33 +55,38 @@ namespace BinarySearchTree
                 if (nextCurrent == null)
                 {
                     current.LChild = new Node(key);
-                    return;
+                    current.LChild.Parent = current;
+                    added = true;
                 }
             }
             else
             {
                 throw new Exception("Cannot insert duplicate values into a tree.");
             }
-            insert(nextCurrent, key);
-
+            if (!added)
+            {
+                insert(nextCurrent, key);
+            }
             //as we move back up the tree
 
             //if right is red, rotate left
-            if(current.RChild.Red)
+            if (IsRed(current.RChild))
             {
                 LeftRotate(current);
+                current = current.Parent;
             }
 
 
             //if there is a red chain on the left (node.Left.IsRed && node.Left.Left.IsRed), rotate right
-            if(current.LChild.Red&&current.LChild.LChild.Red)
+            if (IsRed(current.LChild) && IsRed(current.LChild.LChild))
             {
                 RightRotate(current);
+
             }
 
 
             //rotates: new parent.Color = oldParent.Color
-                //oldParent.Color = red;
+            //oldParent.Color = red;
 
         }
 
@@ -85,6 +95,48 @@ namespace BinarySearchTree
             n.RChild.Red = !n.RChild.Red;
             n.LChild.Red = !n.LChild.Red;
             n.Red = !n.Red;
+        }
+
+        private void MoveRedLeft()
+        {
+
+        }
+
+        private void MoveRedRight()
+        {
+
+        }
+
+        private void FixUp(Node n)
+        {
+            if(IsRed(n.RChild))
+            {
+                LeftRotate(n);
+                n = n.Parent;
+            }
+            if(IsRed(n.LChild) && IsRed(n.LChild.LChild))
+            {
+                RightRotate(n);
+                n = n.Parent;
+            }
+            if(IsRed(n.LChild) && IsRed(n.RChild))
+            {
+                FlipColor(n);
+            }
+        }
+
+        private void DeleteMinimum()
+        {
+
+        }
+
+        private bool IsRed(Node n)
+        {
+            if(n == null)
+            {
+                return false;
+            }
+            return n.Red;
         }
 
 
@@ -155,7 +207,10 @@ namespace BinarySearchTree
             Node toBeLChild = n.Parent.RChild;
             n.Parent.RChild = n;
             n.LChild = toBeLChild;
-            
+
+
+            n.Parent.Red = n.Red;
+            n.Red = true;
         }
 
         public void LeftRotate(Node n)
@@ -182,6 +237,9 @@ namespace BinarySearchTree
             Node toBeRChild = n.Parent.LChild;
             n.Parent.LChild = n;
             n.RChild = toBeRChild;
+
+            n.Parent.Red = n.Red;
+            n.Red = true;
         }
     }
 }
