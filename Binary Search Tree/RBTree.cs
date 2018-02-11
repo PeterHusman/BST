@@ -97,42 +97,129 @@ namespace BinarySearchTree
             n.Red = !n.Red;
         }
 
-        private void MoveRedLeft()
+        private Node FixUp(Node n)
         {
-
-        }
-
-        private void MoveRedRight()
-        {
-
-        }
-
-        private void FixUp(Node n)
-        {
-            if(IsRed(n.RChild))
+            if (IsRed(n.RChild))
             {
                 LeftRotate(n);
                 n = n.Parent;
             }
-            if(IsRed(n.LChild) && IsRed(n.LChild.LChild))
+            if (IsRed(n.LChild) && IsRed(n.LChild.LChild))
             {
                 RightRotate(n);
                 n = n.Parent;
             }
-            if(IsRed(n.LChild) && IsRed(n.RChild))
+            if (IsRed(n.LChild) && IsRed(n.RChild))
             {
                 FlipColor(n);
             }
+            Root.Red = false;
+
+            return n;
         }
 
-        private void DeleteMinimum()
+        public Node MoveRedLeft(Node n)
         {
+            FlipColor(n);
+            if (IsRed(n.RChild.LChild))
+            {
+                //n.RChild = RightRotate(n.RChild);
+                RightRotate(n.RChild);
+                LeftRotate(n);
+                n = n.Parent;
+                FlipColor(n);
+
+            }
+            return n;
+        }
+
+        public Node MoveRedRight(Node n)
+        {
+            FlipColor(n);
+            if(IsRed(n.LChild.LChild))
+            {
+                RightRotate(n);
+                n = n.Parent;
+                FlipColor(n);
+            }
+            return n;
+        }
+
+        public new void Delete(int key)
+        {
+            Delete(Root, key);
+        }
+
+        private Node DeleteMinimum(Node n)
+        {
+            if (n.LChild == null)
+            {
+                return null;
+            }
+            if (!IsRed(n.LChild) && !IsRed(n.LChild.LChild))
+            {
+                n = MoveRedLeft(n);
+            }
+
+            n.LChild = DeleteMinimum(n.LChild);
+            return FixUp(n);
+        }
+
+        private int minimum(Node n)
+        {
+            Node current = n;
+            while (current.LChild != null)
+            {
+                current = current.LChild;
+            }
+            return current.Key;
+        }
+
+        public Node Delete(Node n, int key)
+        {
+            if (key < n.Key)
+            {
+                if (!IsRed(n.LChild) && !IsRed(n.LChild.LChild))
+                {
+                    n = MoveRedLeft(n);
+                }
+                n.LChild = Delete(n.LChild, key);
+            }
+            else
+            {
+                if (IsRed(n.LChild))
+                {
+                    RightRotate(n);
+                    n = n.Parent;
+                }
+                if (key == n.Key && n.RChild == null)
+                {
+                    return null;
+                }
+                if (!IsRed(n.RChild) && !IsRed(n.RChild.LChild))
+                {
+                    n = MoveRedRight(n);
+                }
+
+                if (key == n.Key)
+                {
+                    n.Key = minimum(n.RChild);
+                    n.RChild = DeleteMinimum(n.RChild);
+                }
+                else
+                {
+                    n.RChild = Delete(n.RChild, key);
+                }
+            }
+
+            return FixUp(n);
 
         }
+
 
         private bool IsRed(Node n)
         {
-            if(n == null)
+            if (n == null)
             {
                 return false;
             }

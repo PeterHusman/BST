@@ -45,7 +45,7 @@ namespace BinaryForest.Tests
             }
         }
 
-        
+
 
 
     }
@@ -123,6 +123,31 @@ namespace BinaryForest.Tests
 
             tree.Insert(1);
             Assert.IsFalse(tree.Root.Red, "Root was not black");
+        }
+
+        [TestMethod]
+        public void ValidTree()
+        {
+            var tree = new RBTree();
+
+            for (int i = 0; i < 200; i++)
+            {
+                tree.Insert(i);
+            }
+
+            Assert.IsTrue(tree.IsValid(), "Tree violated Binary Search Tree rules.");
+        }
+
+        [TestMethod]
+        public void LLRBLeansLeft()
+        {
+            var tree = new RBTree();
+
+            for (int i = 0; i < 200; i++)
+            {
+                tree.Insert(i);
+                Assert.IsTrue(tree.Search(i).Balance <= 0, $"Node {i} leaned right.");
+            }
         }
     }
 }
